@@ -1,6 +1,5 @@
 # Blockchain Common Attack Techniques
 Table of Contents
-- [Blockchain Common Attack Techniques](#blockchain-common-attack-techniques)
 - [Protocol Layer](#protocol-layer)
   - [Consensus](#consensus)
     - [Long Range Attack](#long-range-attack)
