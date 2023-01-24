@@ -59,7 +59,7 @@ A Long-Range attack is an attack scenario where the adversary goes back to the g
 In some sense, Long-Range attacks in PoS protocols are related to selfish mining attacks of PoW protocols as the attacker in both cases is adding blocks that are kept secret. Obviously, selfish mining attacks cannot go back to the genesis block of PoW protocols as the computational effort needed is prohibiting, therefore, the impact that they may have is limited. Nevertheless, both attacks fork the main chain and try to append forged blocks where the attacker potentially includes different transactions.
 - Recommendation:  
   Assigning a list of bootstrap nodes, implementing checkpoints, and assigning a range of blocks to always be considered true. Any of these recommendations can prevent this attack from succeeding. 
-- Reference:  
+- References:  
   * [A Survey on Long Range Attacks for
 Proof of Stake Protocols](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8653269)  
   * [Rewriting History: A Brief Introduction to Long Range Attacks](https://blog.positive.com/rewriting-history-a-brief-introduction-to-long-range-attacks-54e473acdba9)
@@ -80,11 +80,14 @@ Is a type of “Unconfirmed Transaction” Attack. A race attack is executed whe
 - Severity: High
 - Consensus affected: PoW
 - Description:  
-- The Finney attack is named after Hal Finney, who suggested it [in this comment](https://bitcointalk.org/index.php?topic=3441.msg48384#msg48384). (Hal is the first recipient of a Bitcoin transaction, and the first person to comment on the release of the Bitcoin source code.)
+The Finney attack is named after Hal Finney, who suggested it [in this comment](https://bitcointalk.org/index.php?topic=3441.msg48384#msg48384). (Hal is the first recipient of a Bitcoin transaction, and the first person to comment on the release of the Bitcoin source code.)
   The Finney Attack is a type of double-spending attack that proceeds as follows:
-    1. The attacker mines blocks normally; in the block he is trying to find, he includes a transaction that sends some of his coins back to himself (from his main wallet to another that he also controls) without broadcasting this transaction.
-    2. When he finds a block, he does not broadcast it; instead, he sends the same coins to a merchant for some goods or services.
-    3. Once the merchant accepts the payment and irreversibly provides the service, the attacker broadcasts his block; the transaction that sends the coins to himself, included in this block, will override the unconfirmed payment to the merchant.
+<ol>
+  <li>The attacker mines blocks normally; in the block he is trying to find, he includes a transaction that sends some of his coins back to himself (from his main wallet to another that he also controls) without broadcasting this transaction.</li>
+  <li>When he finds a block, he does not broadcast it; instead, he sends the same coins to a merchant for some goods or services.</li>
+  <li>Once the merchant accepts the payment and irreversibly provides the service, the attacker broadcasts his block; the transaction that sends the coins to himself, included in this block, will override the unconfirmed payment to the merchant.</li>
+</ol>
+
 - Recommendation:  
   Wait at least 6 or more confirmations on the network to consider a transaction safe and irreversible.
 - Reference:  
@@ -127,7 +130,7 @@ total work chain than under traditional Nakamoto consensus before nodes will reo
 - Recommendation:  
   Once a blockchain grows large enough, the likelihood of a single person or group obtaining enough computing power to overwhelm all the other participants rapidly drops to very low levels.
 - References:  
-  * [Understanding a 51% Attack on the Blockchain](https://www.section.io/engineering-education/understanding-the-51-attack-on-blockchain/#ways-to-prevent-a-51-attack)  
+  * [Understanding a 51% Attack on the Blockchain](https://www.section.io/engineering-education/understanding-the-51-attack-on-blockchain/#ways-to-prevent-a-51-attack) 
   * [What Is a 51% Attack?](https://academy.binance.com/en/articles/what-is-a-51-percent-attack)
 ### Stake Grinding Attack
 - Severity: High
@@ -135,9 +138,12 @@ total work chain than under traditional Nakamoto consensus before nodes will reo
 - Description:  
   Also known as **precomputation attack**.<br/>
   Is a class of attack that afffects PoS protocols where a validator performs some computation or takes some other step to try to bias the randomness in their own favor. For example:<br/>
-    1. In Peercoin, a validator could "grind" through many combinations of parameters and find favorable parameters that would increase the probability of their coins generating a valid block.
-    2. In one now-defunct implementation, the randomness for block N+1 was dependent on the signature of block N. This allowed a validator to repeatedly produce new signatures until they found one that allowed them to get the next block, thereby seizing control of the system forever.
-    3. In NXT, the randomness for block N+1 is dependent on the validator that creates block N. This allows a validator to manipulate the randomness by simply skipping an opportunity to create a block. This carries an opportunity cost equal to the block reward, but sometimes the new random seed would give the validator an above-average number of blocks over the next few dozen blocks. See here and here for a more detailed analysis.
+<ol>
+<li>In Peercoin, a validator could "grind" through many combinations of parameters and find favorable parameters that would increase the probability of their coins generating a valid block.</li>
+<li>In one now-defunct implementation, the randomness for block N+1 was dependent on the signature of block N. This allowed a validator to repeatedly produce new signatures until they found one that allowed them to get the next block, thereby seizing control of the system forever.</li>
+<li>In NXT, the randomness for block N+1 is dependent on the validator that creates block N. This allows a validator to manipulate the randomness by simply skipping an opportunity to create a block. This carries an opportunity cost equal to the block reward, but sometimes the new random seed would give the validator an above-average number of blocks over the next few dozen blocks. See here and here for a more detailed analysis.</li>
+</ol>
+
 - Recommendation:  
   (1) and (2) are easy to solve; the general approach is to require validators to deposit their coins well in advance, and not to use information that can be easily manipulated as source data for the randomness. There are several main strategies for solving problems like (3). The first is to use schemes based on [secret sharing](https://en.wikipedia.org/wiki/Secret_sharing) or [deterministic threshold signatures](https://eprint.iacr.org/2002/081.pdf) and have validators collaboratively generate the random value. These schemes are robust against all manipulation unless a majority of validators collude (in some cases though, depending on the implementation, between 33-50% of validators can interfere in the operation, leading to the protocol having a 67% liveness assumption).<br/>
   The second is to use cryptoeconomic schemes where validators commit to information (i.e. publish sha3(x)) well in advance, and then must publish x in the block; x is then added into the randomness pool.
@@ -209,10 +215,13 @@ The attacker passively listens to network communications to gain access to priva
 - Severity: Medium
 - Description:  
     A Denial of Service (DoS) attack is a type of attack in which an attacker aims to disrupt the normal functioning of a network by overwhelming it with a large number of requests or traffic. In a blockchain network, a DoS attack can take various forms, such as:<br/>
-    1. Flooding the network with a high number of invalid transactions, making it difficult for legitimate transactions to be processed.
-    2. Overloading the network with a high number of requests to the nodes, making them unable to keep up with the traffic, and causing them to crash.
-    3. Attempting to isolate specific nodes from the rest of the network by overwhelming them with a large number of requests.
-    4. Attempting to overload the consensus mechanism of the network, making it difficult for it to reach a decision.
+<ol>
+  <li>Flooding the network with a high number of invalid transactions, making it difficult for legitimate transactions to be processed.</li>
+  <li>Overloading the network with a high number of requests to the nodes, making them unable to keep up with the traffic, and causing them to crash.</li>
+  <li>Attempting to isolate specific nodes from the rest of the network by overwhelming them with a large number of requests.</li>
+  <li>Attempting to overload the consensus mechanism of the network, making it difficult for it to reach a decision.</li>
+</ol>
+
 - Recommendation:  
   Preventing a DoS attack on a blockchain network can be done by using techniques such as rate limiting, which limits the number of requests that a network will accept from a single source, or using a distributed architecture, which makes it more difficult for an attacker to overwhelm a specific node or set of nodes. Additionally, using a decentralized peer discovery mechanism, which allows nodes to find new peers without relying on a central authority, can decrease the chance of a DoS attack.
 ### BGP Hijack Attack
@@ -270,11 +279,13 @@ In order to prevent predictions, the seed phrase or private key should be genera
   In a length extension attack, the attacker is able to append new data to the original message and calculate a new hash value that is valid for the original key. This allows the attacker to create a modified version of the original message and present it as the original message, without detection.
 - Recommendation:  
   There are several ways to prevent length extension attacks:
-    1. Use a different hash function: Avoid SHA-1 and MD5 algorithms, modern hash functions such as SHA-256 and SHA-3 are not vulnerable to length extension attacks.
-    2. Use a keyed hash function: By using a keyed hash function, such as HMAC (Hash-based Message Authentication Code), the attacker will not be able to compute the new hash value without the key, even if they have the original message and the original hash value.
-    3. Use a unique and random value (salt) for each message: By using a unique and random value, known as a salt, for each message, the attacker will not be able to use the same technique to calculate the new hash value for multiple messages.
-    4. Use a message authentication code (MAC): A message authentication code (MAC) is a specific type of keyed hash function that is designed to be resistant to length extension attacks.
-    5. Use a secure protocol design: Length extension attacks can also be prevented by using a secure protocol design. This involves carefully designing the protocol to ensure that it does not rely on the properties of the hash function that can be exploited by an attacker.<br/>
+<ol>
+  <li>Use a different hash function: Avoid SHA-1 and MD5 algorithms, modern hash functions such as SHA-256 and SHA-3 are not vulnerable to length extension attacks.</li>
+  <li>Use a keyed hash function: By using a keyed hash function, such as HMAC (Hash-based Message Authentication Code), the attacker will not be able to compute the new hash value without the key, even if they have the original message and the original hash value.</li>
+  <li>Use a unique and random value (salt) for each message: By using a unique and random value, known as a salt, for each message, the attacker will not be able to use the same technique to calculate the new hash value for multiple messages.</li>
+  <li>Use a message authentication code (MAC): A message authentication code (MAC) is a specific type of keyed hash function that is designed to be resistant to length extension attacks.</li>
+  <li>Use a secure protocol design: Length extension attacks can also be prevented by using a secure protocol design. This involves carefully designing the protocol to ensure that it does not rely on the properties of the hash function that can be exploited by an attacker.</li>
+</ol>
   
   It's important to note that the best way to prevent length extension attacks is to use a combination of these techniques and to keep software updated and follow best practices.
 - Reference:  
@@ -295,9 +306,12 @@ In order to prevent predictions, the seed phrase or private key should be genera
 - Description:  
   Also known as **Double Spend** attack.
   Double spending is one of the problems that blockchain technologies attempt to solve since their very inception. Most, if not all of the attacks in the blockchain, aim to perform a double spend at some point in their execution. In this attack scenario, an attacker attempts to spend the same currency at least two times, hence double-spend. This attack is definitely not possible in the physical terms of currency. It is not possible to buy a resource from one vendor and then spend the exact same coins with another vendor. The attacker attempts to perform a transaction, wait for the merchant to approve it, and then reverts it and spends the same currency in another transaction. In blockchains, this can be achieved by presenting a conflicting transaction possibly in a different branch. BFT systems with the use of absolute finality are considered to be robust against the double spend problem.
-- Recommendations:  
-  1. Check whether a UTXO has been spent.  
-  2. Use nonce to prevent transaction replay.  
+- Recommendations: 
+<ol>
+  <li>Check whether a UTXO has been spent. </li>
+  <li>Use nonce to prevent transaction replay.  </li>
+</ol>
+
 ### Transaction Malleability Attack
 - Severity: High
 - Description:  
@@ -326,8 +340,11 @@ The signature algorithm used in Bitcoin does not sign any of the scriptSig to cr
 - Description:  
   Initiate a specially structured transaction to conduct a false transfer, resulting in a real top-up in the exchange.
 - Recommendations:  
-  1. Check all fields in the transaction event log.  
-  2. The exchange or receiver should complete payment after the transaction was confirmed by enough blocks.  
+<ol>
+  <li>Check all fields in the transaction event log.  </li>
+  <li>The exchange or receiver should complete payment after the transaction was confirmed by enough blocks.  </li>
+</ol>
+
 - Reference:  
   [XRP false top-up](https://developers.ripple.com/partial-payments.html)  
 ### Rug Pull Attack
@@ -336,11 +353,13 @@ The signature algorithm used in Bitcoin does not sign any of the scriptSig to cr
   A Rug Pull Attack is a type of attack on a decentralized finance (DeFi) smart contract in which an attacker exploits the trust and confidence of investors by abruptly withdrawing the funds from the smart contract, leaving investors with worthless tokens. The attacker will usually do this by creating a fake token or project that seems legitimate and promising, then encouraging people to invest in it. Once the attacker has amassed a large amount of funds, they will withdraw the funds from the smart contract, leaving investors with worthless tokens and causing a significant loss for them.
 - Recommendation:  
   There are several ways to prevent Rug Pull Attacks in decentralized finance (DeFi) smart contracts:
-  1. Due Diligence: Before investing in any token or project, it is important to conduct thorough research and due diligence on the team behind the project, their experience, and the technology they are using. This can help to identify red flags and potential scams.
-  2. Whitelists: Some projects use whitelists to limit participation in the token sale to only pre-approved investors. This can help to prevent rug pulls by scammers trying to quickly raise funds from a large number of unsuspecting investors.
-  3. Smart Contract Auditing: Before deploying a smart contract, it should be audited by a reputable third-party auditor like [hacken.io](https://hacken.io) to ensure that it has been designed securely and without any vulnerabilities.
-  4. Community awareness: Communities can play a huge role in preventing rug pull attacks by sharing information and warnings about potential scams, and also by promoting best practices for investors.
-  5. Using decentralized exchanges (DEX) with a good liquidity, these platforms are less likely to be affected by a rug pull.
+<ol>
+  <li>Due Diligence: Before investing in any token or project, it is important to conduct thorough research and due diligence on the team behind the project, their experience, and the technology they are using. This can help to identify red flags and potential scams.</li>
+  <li>Whitelists: Some projects use whitelists to limit participation in the token sale to only pre-approved investors. This can help to prevent rug pulls by scammers trying to quickly raise funds from a large number of unsuspecting investors.</li>
+  <li>Smart Contract Auditing: Before deploying a smart contract, it should be audited by a reputable third-party auditor like <a href="https://hacken.io" target="_blank"> hacken.io</a> to ensure that it has been designed securely and without any vulnerabilities.</li>
+  <li>Community awareness: Communities can play a huge role in preventing rug pull attacks by sharing information and warnings about potential scams, and also by promoting best practices for investors.</li>
+  <li>Using decentralized exchanges (DEX) with a good liquidity, these platforms are less likely to be affected by a rug pull.</li>
+</ol>
 
 # Infrastructure Layer
 
@@ -356,8 +375,11 @@ The signature algorithm used in Bitcoin does not sign any of the scriptSig to cr
 - Description:  
   An attacker can flood the RPC interface with a large number of requests, overwhelming the system and causing it to become unavailable to legitimate users.
 - Recommendation:  
-  a. Prevent malformed parameters from crashing the software.  
-  b. Limit memory queue size.  
+<ol>
+  <li>Prevent malformed parameters from crashing the software.  </li>
+  <li>Limit memory queue size. </li>
+</ol>
+
 ### Cross-Domain Phishing Attack
 - Severity: Low
 - Description:  
@@ -369,22 +391,27 @@ The signature algorithm used in Bitcoin does not sign any of the scriptSig to cr
 - Description:  
   An attacker can intercept and modify requests sent to the RPC interface, potentially altering the intended behavior of the blockchain.
 - Recommendations:  
-  1. Use Secure Communication Protocols: It is important to use secure communication protocols such as HTTPS, SSH or SSL/TLS to encrypt the communication between the client and the RPC interface, making it much more difficult for an attacker to intercept and modify requests.
-  2. Implement Authentication: Implementing authentication mechanisms such as password or token-based authentication, would ensure that only authorized users can access the RPC interface and prevent unauthorized access.
-  3. Use Firewalls and Network Segmentation: Firewalls can be used to restrict access to the RPC interface to only trusted sources, and network segmentation can be used to isolate the RPC interface from other parts of the network.
-  4. Input validation: The inputs to the RPC interface should be properly sanitized and validated before processing, to prevent injection attacks.
-  5. Regularly update software: Keep the software and system up to date with the latest security patches to prevent known vulnerabilities from being exploited.
-  6. Monitor logs: Regularly monitor the logs of the RPC interface for suspicious activity, and have an incident response plan in place to quickly detect and respond to any security breaches.
+<ol>
+  <li>Use Secure Communication Protocols: It is important to use secure communication protocols such as HTTPS, SSH or SSL/TLS to encrypt the communication between the client and the RPC interface, making it much more difficult for an attacker to intercept and modify requests.</li>
+  <li>Implement Authentication: Implementing authentication mechanisms such as password or token-based authentication, would ensure that only authorized users can access the RPC interface and prevent unauthorized access.</li>
+  <li>Use Firewalls and Network Segmentation: Firewalls can be used to restrict access to the RPC interface to only trusted sources, and network segmentation can be used to isolate the RPC interface from other parts of the network.</li>
+  <li>Input validation: The inputs to the RPC interface should be properly sanitized and validated before processing, to prevent injection attacks.</li>
+  <li>Regularly update software: Keep the software and system up to date with the latest security patches to prevent known vulnerabilities from being exploited.</li>
+  <li>Monitor logs: Regularly monitor the logs of the RPC interface for suspicious activity, and have an incident response plan in place to quickly detect and respond to any security breaches.</li>
+</ol>
+
 ### Injection Attack
 - Severity: Low
 - Description:  
   An attacker can use malformed inputs to inject malicious code into the RPC interface, which can be used to steal sensitive information or disrupt the operation of the blockchain.
 - Recommendations:  
-  1. Input validation: The inputs to the RPC interface should be properly sanitized and validated before processing. This can help to prevent injection attacks by ensuring that only valid inputs are accepted and executed.
-  2. Use prepared statements: Use prepared statements or parameterized queries to separate the data from the code, this can prevent SQL injection.
-  3. Use an ORM: Object-Relational Mapping (ORM) libraries can provide a layer of abstraction between the code and the database, preventing SQL injection.
-  4. Use a Web Application Firewall (WAF): A Web Application Firewall (WAF) can be used to detect and block malicious inputs, including injection attacks.
-  5. Limit permissions: Limit the permissions of the account that the RPC uses to access the database, to prevent an attacker from using the account to execute malicious code.
+<ol>
+  <li>Input validation: The inputs to the RPC interface should be properly sanitized and validated before processing. This can help to prevent injection attacks by ensuring that only valid inputs are accepted and executed.</li>
+  <li>Use prepared statements: Use prepared statements or parameterized queries to separate the data from the code, this can prevent SQL injection.</li>
+  <li>Use an ORM: Object-Relational Mapping (ORM) libraries can provide a layer of abstraction between the code and the database, preventing SQL injection.</li>
+  <li>Use a Web Application Firewall (WAF): A Web Application Firewall (WAF) can be used to detect and block malicious inputs, including injection attacks.</li>
+  <li>Limit permissions: Limit the permissions of the account that the RPC uses to access the database, to prevent an attacker from using the account to execute malicious code.</li>
+</ol>
 
 ## Mining Pools
 ### Selfish Mining
@@ -441,8 +468,11 @@ If the attackers are aware of recently mined blocks, they automatically publish 
 The Fork-After-Withholding (FAW) attack revenue is equivalent to or greater than the Block Withholding (BWH) attack and the attack is four times more fruitful than the BWH attack.
 The Selfish mining attack and the BWH attack are merged in this attack.
 There are two forms of this attack:
-1. In the Single-pool FAW attack, the attacker joins the target mining pool and executes the attack against it.
-2. In the Multipool FAW attack by expanding the attack against many pools, the attacker intends to maximize his or her revenue.
+<ol>
+  <li>In the Single-pool FAW attack, the attacker joins the target mining pool and executes the attack against it.</li>
+  <li>In the Multipool FAW attack by expanding the attack against many pools, the attacker intends to maximize his or her revenue.</li>
+</ol>
+
 - Recommendation:  
   Mining pool managers could provide a beacon value that is updated very frequently (i.e., every couple of seconds) and only give points for PPoWs that include a recent beacon value.
 - Reference:  
