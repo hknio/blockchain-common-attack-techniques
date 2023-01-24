@@ -1,55 +1,75 @@
 # Blockchain Common Attack Techniques
 Table of Contents
-- [Protocol Layer](#protocol-layer)
-  - [Consensus](#consensus)
-    - [Long Range Attack](#long-range-attack)
-    - [Race Attack](#race-attack)
-    - [Liveness Denial](#liveness-denial)
-    - [Finney Attack](#finney-attack)
-    - [Vector76 Attack](#vector76-attack)
-    - [Alternative Historical Attack](#alternative-historical-attack)
-    - [51% Attack](#51-attack)
-    - [Stake Grinding Attack](#stake-grinding-attack)
-    - [Coin Age Accumulation Attack](#coin-age-accumulation-attack)
-    - [Nothing-at-Stake Attack](#nothing-at-stake-attack)
-    - [Block Double Production](#block-double-production)
-- [Network Layer](#network-layer)
-  - [P2P](#p2p)
-    - [Sybil Attack](#sybil-attack)
-    - [Eclipse Attack](#eclipse-attack)
-    - [Eavesdropping Attack](#eavesdropping-attack)
-    - [Denial of Service Attack](#denial-of-service-attack)
-    - [BGP Hijack Attack](#bgp-hijack-attack)
-    - [Alien Attack](#alien-attack)
-    - [Timejacking](#timejacking)
-- [Data Layer](#data-layer)
-  - [Encryption](#encryption)
-    - [Cryptographic Attacks](#cryptographic-attacks)
-    - [Private Key Prediction](#private-key-prediction)
-    - [Length Extension Attack](#length-extension-attack)
-    - [Hash collision attack](#hash-collision-attack)
-  - [Transaction](#transaction)
-    - [Transaction Replay Attack](#transaction-replay-attack)
-    - [Transaction Malleability Attack](#transaction-malleability-attack)
-    - [Time-Locked Transaction Attack](#time-locked-transaction-attack)
-    - [False Top-Up Attack](#false-top-up-attack)
-    - [Rug Pull Attack](#rug-pull-attack)
-- [Infrastructure Layer](#infrastructure-layer)
-  - [RPC](#rpc)
-    - [Information Leakage](#information-leakage)
-    - [Denial of Service Attack](#denial-of-service-attack-1)
-    - [Cross-Domain Phishing Attack](#cross-domain-phishing-attack)
-    - [Man-in-the-middle Attack](#man-in-the-middle-attack)
-    - [Injection Attack](#injection-attack)
-  - [Mining Pools](#mining-pools)
-    - [Selfish Mining](#selfish-mining)
-    - [Bribery Attack](#bribery-attack)
-    - [Block Withholding Attack](#block-withholding-attack)
-    - [Pool Hopping Attack](#pool-hopping-attack)
-    - [Block Discarding Attack](#block-discarding-attack)
-    - [Fork After Withholding Attack](#fork-after-withholding-attack)
-    - [Uncle-Block Attack](#uncle-block-attack)
-      
+<div id="table-of-content">
+<ul>
+<li><a href="#protocol-layer">Protocol Layer</a><ul>
+<li><a href="#consensus">Consensus</a><ul>
+<li><a href="#long-range-attack">Long Range Attack</a></li>
+<li><a href="#race-attack">Race Attack</a></li>
+<li><a href="#liveness-denial">Liveness Denial</a></li>
+<li><a href="#finney-attack">Finney Attack</a></li>
+<li><a href="#vector76-attack">Vector76 Attack</a></li>
+<li><a href="#alternative-historical-attack">Alternative Historical Attack</a></li>
+<li><a href="#51-attack">51% Attack</a></li>
+<li><a href="#stake-grinding-attack">Stake Grinding Attack</a></li>
+<li><a href="#coin-age-accumulation-attack">Coin Age Accumulation Attack</a></li>
+<li><a href="#nothing-at-stake-attack">Nothing-at-Stake Attack</a></li>
+<li><a href="#block-double-production">Block Double Production</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#network-layer">Network Layer</a><ul>
+<li><a href="#p2p">P2P</a><ul>
+<li><a href="#sybil-attack">Sybil Attack</a></li>
+<li><a href="#eclipse-attack">Eclipse Attack</a></li>
+<li><a href="#eavesdropping-attack">Eavesdropping Attack</a></li>
+<li><a href="#denial-of-service-attack">Denial of Service Attack</a></li>
+<li><a href="#bgp-hijack-attack">BGP Hijack Attack</a></li>
+<li><a href="#alien-attack">Alien Attack</a></li>
+<li><a href="#timejacking">Timejacking</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#data-layer">Data Layer</a><ul>
+<li><a href="#encryption">Encryption</a><ul>
+<li><a href="#cryptographic-attacks">Cryptographic Attacks</a></li>
+<li><a href="#private-key-prediction">Private Key Prediction</a></li>
+<li><a href="#length-extension-attack">Length Extension Attack</a></li>
+<li><a href="#hash-collision-attack">Hash collision attack</a></li>
+</ul>
+</li>
+<li><a href="#transaction">Transaction</a><ul>
+<li><a href="#transaction-replay-attack">Transaction Replay Attack</a></li>
+<li><a href="#transaction-malleability-attack">Transaction Malleability Attack</a></li>
+<li><a href="#time-locked-transaction-attack">Time-Locked Transaction Attack</a></li>
+<li><a href="#false-top-up-attack">False Top-Up Attack</a></li>
+<li><a href="#rug-pull-attack">Rug Pull Attack</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#infrastructure-layer">Infrastructure Layer</a><ul>
+<li><a href="#rpc">RPC</a><ul>
+<li><a href="#information-leakage">Information Leakage</a></li>
+<li><a href="#denial-of-service-attack-1">Denial of Service Attack</a></li>
+<li><a href="#cross-domain-phishing-attack">Cross-Domain Phishing Attack</a></li>
+<li><a href="#man-in-the-middle-attack">Man-in-the-middle Attack</a></li>
+<li><a href="#injection-attack">Injection Attack</a></li>
+</ul>
+</li>
+<li><a href="#mining-pools">Mining Pools</a><ul>
+<li><a href="#selfish-mining">Selfish Mining</a></li>
+<li><a href="#bribery-attack">Bribery Attack</a></li>
+<li><a href="#block-withholding-attack">Block Withholding Attack</a></li>
+<li><a href="#pool-hopping-attack">Pool Hopping Attack</a></li>
+<li><a href="#block-discarding-attack">Block Discarding Attack</a></li>
+<li><a href="#fork-after-withholding-attack">Fork After Withholding Attack</a></li>
+<li><a href="#uncle-block-attack">Uncle-Block Attack</a></li>
+</ul>
+</div>
+  
 # Protocol Layer
 ## Consensus
 ### Long Range Attack
