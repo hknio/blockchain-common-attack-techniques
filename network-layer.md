@@ -1,16 +1,15 @@
 # 📦 Network Layer Attacks
 
-Table of Contents
+## Table of Contents
 
-* [Network Layer Attacks](network-layer.md#network-layer-attacks)
-  * [P2P](network-layer.md#p2p)
-    * [Sybil Attack](network-layer.md#sybil-attack)
-    * [Eclipse Attack](network-layer.md#eclipse-attack)
-    * [Eavesdropping Attack](network-layer.md#eavesdropping-attack)
-    * [Denial of Service Attack](network-layer.md#denial-of-service-attack)
-    * [BGP Hijack Attack](network-layer.md#bgp-hijack-attack)
-    * [Alien Attack](network-layer.md#alien-attack)
-    * [Timejacking](network-layer.md#timejacking)
+* [P2P](network-layer.md#p2p)
+  * [Sybil Attack](network-layer.md#sybil-attack)
+  * [Eclipse Attack](network-layer.md#eclipse-attack)
+  * [Eavesdropping Attack](network-layer.md#eavesdropping-attack)
+  * [Denial of Service Attack](network-layer.md#denial-of-service-attack)
+  * [BGP Hijack Attack](network-layer.md#bgp-hijack-attack)
+  * [Alien Attack](network-layer.md#alien-attack)
+  * [Timejacking](network-layer.md#timejacking)
 
 ## P2P
 
