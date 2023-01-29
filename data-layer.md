@@ -1,19 +1,18 @@
 # 🗄 Data Layer Attacks
 
-Table of Contents
+## Table of Contents
 
-* [Data Layer Attacks](data-layer.md#data-layer-attacks)
-  * [Encryption](data-layer.md#encryption)
-    * [Cryptographic Attacks](data-layer.md#cryptographic-attacks)
-    * [Private Key Prediction](data-layer.md#private-key-prediction)
-    * [Length Extension Attack](data-layer.md#length-extension-attack)
-    * [Hash collision attack](data-layer.md#hash-collision-attack)
-  * [Transactions](data-layer.md#transactions)
-    * [Transaction Replay Attack](data-layer.md#transaction-replay-attack)
-    * [Transaction Malleability Attack](data-layer.md#transaction-malleability-attack)
-    * [Time-Locked Transaction Attack](data-layer.md#time-locked-transaction-attack)
-    * [False Top-Up Attack](data-layer.md#false-top-up-attack)
-    * [Rug Pull Attack](data-layer.md#rug-pull-attack)
+* [Encryption](data-layer.md#encryption)
+  * [Cryptographic Attacks](data-layer.md#cryptographic-attacks)
+  * [Private Key Prediction](data-layer.md#private-key-prediction)
+  * [Length Extension Attack](data-layer.md#length-extension-attack)
+  * [Hash collision attack](data-layer.md#hash-collision-attack)
+* [Transactions](data-layer.md#transactions)
+  * [Transaction Replay Attack](data-layer.md#transaction-replay-attack)
+  * [Transaction Malleability Attack](data-layer.md#transaction-malleability-attack)
+  * [Time-Locked Transaction Attack](data-layer.md#time-locked-transaction-attack)
+  * [False Top-Up Attack](data-layer.md#false-top-up-attack)
+  * [Rug Pull Attack](data-layer.md#rug-pull-attack)
 
 ## Encryption
 
