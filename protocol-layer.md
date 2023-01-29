@@ -134,7 +134,7 @@
 * Severity: Medium
 * Consensus affected: PoS / DPoS
 * Description:\
-  ![Nothing-at-stake-attack](../images/nothing-at-stake-attack.png)\
+  ![Nothing-at-stake-attack](./images/nothing-at-stake-attack.png)\
   The “nothing-at-stake” problem refers to the fact that block creators on generic proof-of-stake protocols do not have anything at stake when the network forks. This is one of the primary criticisms of proof-of-stake consensus mechanisms. When a proof-of-work based network, like Bitcoin, forks, every active miner creating blocks on the network must _choose_ which fork to mine on. A mining unit cannot create blocks on both forks at the same. The scarcity of the hash power is what forces (in theory) the fork to resolve. When a proof-of-stake protocol forks though, the scarce resource for block production is not hash power but token stake, and, in a fork, an equivalent amount of stake is created on the new network. This means a block creator can start creating blocks on both networks immediately and they do not have to choose (the computation cost of creating a block in a POS system is generally trivial because miners are not competing with each other based on computation). This makes it difficult, if not impossible, for a simple POS system to resolve forks; moreover, it can make double-spend attacks much cheaper in the case of fork resolution.
 * Recommendation:\
   [Casper explanations](https://blog.ethereum.org/2015/08/01/introducing-casper-friendly-ghost/) outlined methods of defense. The original [Cosmos whitepaper](https://github.com/cosmos/cosmos/blob/master/WHITEPAPER.md) also discussed several defenses. Most solutions center on punishing block creators if it can be proven that they are creating blocks on another network.
