@@ -1,6 +1,6 @@
 # 🤝 Protocol Layer Attacks
 
-Table of Contents
+## Table of Contents
 
 * [Consensus](protocol-layer.md#consensus)
   * [Long Range Attack](protocol-layer.md#long-range-attack)
