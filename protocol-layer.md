@@ -2,19 +2,18 @@
 
 Table of Contents
 
-* [Protocol Layer Attacks](protocol-layer.md#protocol-layer-attacks)
-  * [Consensus](protocol-layer.md#consensus)
-    * [Long Range Attack](protocol-layer.md#long-range-attack)
-    * [Race Attack](protocol-layer.md#race-attack)
-    * [Liveness Denial](protocol-layer.md#liveness-denial)
-    * [Finney Attack](protocol-layer.md#finney-attack)
-    * [Vector76 Attack](protocol-layer.md#vector76-attack)
-    * [Alternative Historical Attack](protocol-layer.md#alternative-historical-attack)
-    * [51% Attack](protocol-layer.md#51-attack)
-    * [Stake Grinding Attack](protocol-layer.md#stake-grinding-attack)
-    * [Coin Age Accumulation Attack](protocol-layer.md#coin-age-accumulation-attack)
-    * [Nothing-at-Stake Attack](protocol-layer.md#nothing-at-stake-attack)
-    * [Block Double Production](protocol-layer.md#block-double-production)
+* [Consensus](protocol-layer.md#consensus)
+  * [Long Range Attack](protocol-layer.md#long-range-attack)
+  * [Race Attack](protocol-layer.md#race-attack)
+  * [Liveness Denial](protocol-layer.md#liveness-denial)
+  * [Finney Attack](protocol-layer.md#finney-attack)
+  * [Vector76 Attack](protocol-layer.md#vector76-attack)
+  * [Alternative Historical Attack](protocol-layer.md#alternative-historical-attack)
+  * [51% Attack](protocol-layer.md#51-attack)
+  * [Stake Grinding Attack](protocol-layer.md#stake-grinding-attack)
+  * [Coin Age Accumulation Attack](protocol-layer.md#coin-age-accumulation-attack)
+  * [Nothing-at-Stake Attack](protocol-layer.md#nothing-at-stake-attack)
+  * [Block Double Production](protocol-layer.md#block-double-production)
 
 ## Consensus
 
