@@ -1,22 +1,21 @@
 # 🛠 Infrastructure Layer Attacks
 
-Table of Contents
+## Table of Contents
 
-* [Infrastructure Layer Attacks](infrastructure-layer.md#infrastructure-layer-attacks)
-  * [RPC](infrastructure-layer.md#rpc)
-    * [Information Leakage](infrastructure-layer.md#information-leakage)
-    * [Denial of Service Attack](infrastructure-layer.md#denial-of-service-attack)
-    * [Cross-Domain Phishing Attack](infrastructure-layer.md#cross-domain-phishing-attack)
-    * [Man-in-the-middle Attack](infrastructure-layer.md#man-in-the-middle-attack)
-    * [Injection Attack](infrastructure-layer.md#injection-attack)
-  * [Mining Pools](infrastructure-layer.md#mining-pools)
-    * [Selfish Mining](infrastructure-layer.md#selfish-mining)
-    * [Bribery Attack](infrastructure-layer.md#bribery-attack)
-    * [Block Withholding Attack](infrastructure-layer.md#block-withholding-attack)
-    * [Pool Hopping Attack](infrastructure-layer.md#pool-hopping-attack)
-    * [Block Discarding Attack](infrastructure-layer.md#block-discarding-attack)
-    * [Fork After Withholding Attack](infrastructure-layer.md#fork-after-withholding-attack)
-    * [Uncle-Block Attack](infrastructure-layer.md#uncle-block-attack)
+* [RPC](infrastructure-layer.md#rpc)
+  * [Information Leakage](infrastructure-layer.md#information-leakage)
+  * [Denial of Service Attack](infrastructure-layer.md#denial-of-service-attack)
+  * [Cross-Domain Phishing Attack](infrastructure-layer.md#cross-domain-phishing-attack)
+  * [Man-in-the-middle Attack](infrastructure-layer.md#man-in-the-middle-attack)
+  * [Injection Attack](infrastructure-layer.md#injection-attack)
+* [Mining Pools](infrastructure-layer.md#mining-pools)
+  * [Selfish Mining](infrastructure-layer.md#selfish-mining)
+  * [Bribery Attack](infrastructure-layer.md#bribery-attack)
+  * [Block Withholding Attack](infrastructure-layer.md#block-withholding-attack)
+  * [Pool Hopping Attack](infrastructure-layer.md#pool-hopping-attack)
+  * [Block Discarding Attack](infrastructure-layer.md#block-discarding-attack)
+  * [Fork After Withholding Attack](infrastructure-layer.md#fork-after-withholding-attack)
+  * [Uncle-Block Attack](infrastructure-layer.md#uncle-block-attack)
 
 ## RPC
 
