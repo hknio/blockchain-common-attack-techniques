@@ -38,6 +38,7 @@ layout:
 * Severity: High
 * Description:\
   An attacker creates multiple fake identities, or "Sybils," in order to gain control over a significant portion of the network's resources or influence the outcome of consensus decisions. The attacker can then use this control to disrupt the network's operations or steal resources from legitimate users.\
+  \
   A Sybil attack can take the form of creating multiple fake nodes or "Sybil nodes" that the attacker controls. The attacker can then use these nodes to manipulate the network's consensus process, such as by controlling more than half of the network's computational power in a proof-of-work consensus mechanism or by controlling a large number of votes in a proof-of-stake mechanism.
 * Recommendations:
   * Sybil attack prevention is done by creating a mechanism that can reliably identify the true identities of network participants, and then using this information to limit the number of resources that any one participant can control. For example, a blockchain network might use a reputation-based system to assign each node a score based on its past behavior, and then use this score to limit the amount of computational power that each node can use.\\
@@ -64,10 +65,17 @@ layout:
 ### Eavesdropping Attack
 
 * Severity: Low
-* Description:\
-  The attacker passively listens to network communications to gain access to private information, such as node identification numbers, routing updates, or application-sensitive data. The attacker can use this private information to compromise nodes in the network, disrupt routing, or degrade application performance.
-* Recommendation:\
-  Encrypt communications using encryption protocols, such as TLS.
+*   Description:\
+    An eavesdropping attack refers to a passive intrusion where an unauthorized individual monitors network traffic. The attacker is essentially "listening in" on network communications, collecting sensitive data like node identification numbers, routing updates, or application-specific information. This gleaned information can be exploited further to compromise nodes, disrupt network routing, or deteriorate application performance.\
+
+
+    **Impact**: Although the attack itself is passive, the potential aftermath can be quite harmful. It could lead to a breach of privacy, unauthorized access to nodes, manipulation of network routes, and degradation in the performance of applications running on the network. In some cases, it might even pave the way for more severe attacks.
+*   Recommendation:
+
+    To mitigate the risks of an eavesdropping attack, the following measures can be taken:
+
+    1. **Encryption**: Implement secure encryption protocols like Transport Layer Security (TLS) or Secure Sockets Layer (SSL) to encrypt communications within the network. Encryption makes intercepted data unreadable and useless to eavesdroppers.
+    2. **Secure Protocols**: Use secure versions of network protocols, like HTTPS instead of HTTP, to ensure the safety of data transmission.
 * Reference:\
   [The RLPx Transport Protocol](https://github.com/ethereum/devp2p/blob/master/rlpx.md)
 
@@ -75,7 +83,7 @@ layout:
 
 * Severity: Medium
 * Description:\
-  A Denial of Service (DoS) attack is a type of attack in which an attacker aims to disrupt the normal functioning of a network by overwhelming it with a large number of requests or traffic. In a blockchain network, a DoS attack can take various forms, such as:\\
+  A Denial of Service (DoS) attack is a type of attack in which an attacker aims to disrupt the normal functioning of a network by overwhelming it with a large number of requests or traffic. In a blockchain network, a DoS attack can take various forms, such as:
 
 1. Flooding the network with a high number of invalid transactions, making it difficult for legitimate transactions to be processed.
 2. Overloading the network with a high number of requests to the nodes, making them unable to keep up with the traffic, and causing them to crash.
@@ -104,6 +112,7 @@ layout:
 * Severity: Low
 * Description:\
   Alien attack, also known as address pool pollution, refers to an attack method that induces nodes of the same chain to invade and pollute each other. The main reason for the vulnerability is that the same chain system does not identify non-similar nodes in the communication protocol.\
+  \
   Ethereum alien attack means that Ethereum's similar chain (specifically, the public chain using the Ethereum P2P discv4 node discovery protocol, including Ethereum and Ether Classic) cannot distinguish whether the nodes belong to the same one because they use a compatible handshake protocol. The chain causes the address pools to pollute each other, and the communication performance of the nodes decreases, eventually causing the node to block.
 * Recommendation:\
   Add network identification to P2P connection protocol, such as ChainID in Ethereum, and Magic in Bitcoin.
@@ -114,37 +123,79 @@ layout:
 
 * Severity: High
 * Description:\
-  Timejacking exploits a theoretical vulnerability in Bitcoin timestamp handling. During a timejacking attack, a hacker alters the network time counter of the node and forces the node to accept an alternative blockchain. This can be achieved when a malicious user adds multiple fake peers to the network with inaccurate timestamps.
-* Recommendation:\
-  A timejacking attack can be prevented by restricting acceptance time ranges or using the node’s system time.
+  Timejacking is a type of attack that exploits the timestamp handling of nodes in a blockchain network, particularly prevalent in Bitcoin. In a timejacking attack, a malicious actor manipulates the network time counter of a node, pushing it to accept an illegitimate blockchain. The attacker achieves this by adding numerous deceptive peers to the network that propagate incorrect timestamps, causing a skewed network time.\
+  \
+  **Impact**: This manipulation can disrupt the consensus mechanism, leading to potential double-spending attacks, and can compromise the integrity of the network by causing the node to accept an alternative, attacker-controlled blockchain.
+*   Recommendation:
+
+    To mitigate timejacking attacks, implementing safeguards on the acceptance of time updates is critical. This could be done by:
+
+    1. **Restricting Acceptance Time Ranges**: Limiting the difference between the network time and the system time of the node can help to ensure the node isn't easily swayed by incorrect timestamps.
+    2. **Using System Time**: Relying more heavily on the node's system time, instead of the network time derived from peers, can protect against manipulation.
+    3. **Peer Management**: Implementing robust policies for peer acceptance and management can help to filter out malicious or suspicious nodes that provide incorrect timestamps.
+
+### Network Partitioning Attack
+
+* Severity: High
+* Description:\
+  A network partitioning attack, also known as a Split-Brain or Network Isolation attack, occurs when a blockchain network is divided into separate, isolated subnets due to either malicious actions or unintentional network issues. Nodes in one partition are unable to communicate with those in the other, leading to discrepancies in the ledger's state.\
+  \
+  Network partitioning can disrupt the consensus mechanism, resulting in different versions of the blockchain in each partition, also known as forks. This can lead to double-spending attacks if the partitions later reconcile. Additionally, it can result in reduced security as the computational power of the network is effectively split.
+* Recommendations:
+
+1. **Redundancy and Failover Systems**: Set up redundant network connections and failover systems to maintain network communication in case of failures.
+2. **Diversification of Nodes**: Diversify node deployment across different regions and ISPs to reduce the risk of simultaneous failures.
+3. **Peer Discovery and Network Reconnection Policies**: Implement robust peer discovery and network reconnection policies in the nodes to enable them to discover and reconnect to other nodes in the network effectively when partitions are resolved.
+4. **Use Gossip Protocols**: Use robust gossip protocols to ensure data propagation across all nodes, reducing the likelihood and impact of partitions.
+5. **Consider Byzantine Fault Tolerant Consensus Mechanisms**: These mechanisms are designed to tolerate a certain degree of faulty or malicious nodes and may help in managing the effects of a network partition.
 
 ## RPC
 
 ### Information Leakage
 
 * Severity: Low
-* Description:\
-  An attacker can exploit vulnerabilities in the RPC interface to gain access to sensitive information, such as private keys or transaction data. The [Eavesdropping Attack](network-layer.md#eavesdropping-attack) apply to this category as well.
-* Recommendation:\
-  Encrypt communications using encryption protocols, such as TLS.
+*   Description:\
+    If the interface is inadequately secured, an attacker can exploit it to access confidential information. This can include private keys, transaction data, and other critical data. The threat of [eavesdropping attacks](network-layer.md#eavesdropping-attack) also applies here, where attackers can "listen in" on communications to gather private details.\
+
+
+    **Impact**: Information leakage can lead to unauthorized transactions, loss of funds, impersonation attacks, or a complete compromise of the blockchain node. This compromises both the integrity and confidentiality of blockchain operations and could lead to significant reputational and financial damage.
+*   Recommendation:
+
+    To mitigate the risk, adopt the following security measures:
+
+    1. **Communication Encryption**: Ensure all communications are encrypted using robust protocols like TLS, rendering any intercepted data useless to an attacker.
+    2. **Access Control**: Implement strong access control mechanisms, ensuring only trusted and necessary entities have access.
 
 ### Denial of Service Attack
 
 * Severity: Medium
-* Description:\
-  An attacker can flood the RPC interface with a large number of requests, overwhelming the system and causing it to become unavailable to legitimate users.
-* Recommendation:
+*   Description:\
+    An attacker overwhelms the system by flooding the RPC interface with a large number of requests. This can render the system unresponsive, thereby denying service to legitimate users.\
 
-1. Prevent malformed parameters from crashing the software.
-2. Limit memory queue size.
+
+    **Impact**: A successful DoS attack can disrupt the normal functioning of the blockchain system, leading to delayed transactions, impaired network performance, and potentially, loss of trust from users.
+*   Recommendation:
+
+    To mitigate the risk, implement the following measures:
+
+    1. **Rate Limiting**: Implement a rate-limiting mechanism to control the number of requests a user can send to the RPC interface within a certain timeframe.
+    2. **Input Validation**: Ensure all parameters are properly validated to prevent malformed inputs from causing crashes.
+    3. **Queue Management**: Limit the size of the memory queue to prevent the system from being overwhelmed by incoming requests.
 
 ### Cross-Domain Phishing Attack
 
 * Severity: Low
-* Description:\
-  The hacker tricks the victim into opening a malicious webpage, connects to the cryptocurrency wallet RPC port through a cross-domain request, and then steals crypto assets.
-* Recommendation:\
-  Prohibit nodes from enabling cross-domain access.
+*   Description:\
+    In this deceptive scheme, the attacker tricks the victim into visiting a malicious webpage. Upon loading, this webpage then initiates a cross-domain request, covertly connecting to the RPC port of the victim's cryptocurrency wallet. Subsequently, this unauthorized connection serves as a conduit for the attacker to carry out unauthorized transactions or steal crypto assets.
+
+    \
+    **Impact**: If successful, a cross-domain phishing attack can lead to severe consequences including unauthorized transactions, potential loss of crypto assets, compromise of personal account details, and a subsequent loss of trust in the security measures of the platform.
+*   Recommendation:
+
+    Implement the following strategies to prevent this type of attack:
+
+    1. **Disable Cross-Domain Access**: Nodes should be configured to disable cross-domain access, effectively barring any unauthorized external connections to the RPC interface.
+    2. **Access Control**: Enforce strict access controls and secure configurations for the RPC interface to limit the potential for unauthorized access and data breaches.
 
 ### Man-in-the-middle Attack
 

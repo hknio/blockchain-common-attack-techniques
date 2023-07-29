@@ -100,10 +100,17 @@ It's important to note that the best way to prevent length extension attacks is 
 ### Time-Locked Transaction Attack
 
 * Severity: Low
-* Description:\
-  Make tokens unavailable to token recipients by specifying the block height at which utxo can be spent.
-* Recommendation:\
-  Check whether a transaction is time-locked when receiving coins.
+*   Description:\
+    In a Time-Locked Transaction Attack, the attacker exploits the time-lock feature of a blockchain, which allows tokens to be spent only after a specified block height or time. The attacker deliberately sets an unreasonably high block height or future time for the transaction, effectively making the recipient's tokens inaccessible for a prolonged period.\
+
+
+    **Impact**: The attack impacts the liquidity and usability of the recipient's tokens. It could potentially disrupt their financial operations if they heavily depend on the prompt availability of these tokens.
+*   Recommendation:
+
+    Implement the following mitigation measures:
+
+    1. **Transaction Verification**: Always verify the details of a transaction before accepting it. Check for any time-lock conditions and ensure that they are within reasonable limits.
+    2. **Use Trusted Sources**: Only engage in transactions with trusted sources to minimize the risk of becoming a target of such an attack.
 
 ### False Top-Up Attack
 
