@@ -24,6 +24,7 @@ layout:
   * [BGP Hijack Attack](network-layer.md#bgp-hijack-attack)
   * [Alien Attack](network-layer.md#alien-attack)
   * [Timejacking](network-layer.md#timejacking)
+  * [Network Partitioning Attack](network-layer.md#network-partitioning-attack)
 * [RPC](network-layer.md#rpc)
   * [Information Leakage ](network-layer.md#information-leakage)
   * [Denial of Service Attack ](network-layer.md#denial-of-service-attack-1)
