@@ -1,3 +1,17 @@
+---
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+---
+
 # 📦 Network Layer Attacks
 
 ## Table of Contents
@@ -10,6 +24,12 @@
   * [BGP Hijack Attack](network-layer.md#bgp-hijack-attack)
   * [Alien Attack](network-layer.md#alien-attack)
   * [Timejacking](network-layer.md#timejacking)
+* [RPC](network-layer.md#rpc)
+  * [Information Leakage ](network-layer.md#information-leakage)
+  * [Denial of Service Attack ](network-layer.md#denial-of-service-attack-1)
+  * [Cross-Domain Phishing Attack ](network-layer.md#cross-domain-phishing-attack)
+  * [Man-in-the-middle Attack ](network-layer.md#man-in-the-middle-attack)
+  * [Injection Attack](network-layer.md#injection-attack)
 
 ## P2P
 
@@ -20,10 +40,8 @@
   An attacker creates multiple fake identities, or "Sybils," in order to gain control over a significant portion of the network's resources or influence the outcome of consensus decisions. The attacker can then use this control to disrupt the network's operations or steal resources from legitimate users.\
   A Sybil attack can take the form of creating multiple fake nodes or "Sybil nodes" that the attacker controls. The attacker can then use these nodes to manipulate the network's consensus process, such as by controlling more than half of the network's computational power in a proof-of-work consensus mechanism or by controlling a large number of votes in a proof-of-stake mechanism.
 * Recommendations:
-  * Sybil attack prevention is done by creating a mechanism that can reliably identify the true identities of network participants, and then using this information to limit the number of resources that any one participant can control. For example, a blockchain network might use a reputation-based system to assign each node a score based on its past behavior, and then use this score to limit the amount of computational power that each node can use.\
-
-  * Using "proof of identity" can be used to prevent Sybil attacks, which requires users to prove their identity through a trusted third party or a government-issued ID.\
-
+  * Sybil attack prevention is done by creating a mechanism that can reliably identify the true identities of network participants, and then using this information to limit the number of resources that any one participant can control. For example, a blockchain network might use a reputation-based system to assign each node a score based on its past behavior, and then use this score to limit the amount of computational power that each node can use.\\
+  * Using "proof of identity" can be used to prevent Sybil attacks, which requires users to prove their identity through a trusted third party or a government-issued ID.\\
   * Another solution can be that each node monitors the behavior of other nodes and checks for the nodes which are forwarding the blocks of only one particular user. Such nodes are quickly identified, blacklisted and notified to other nodes, and thus the Sybil attack can be restricted.
 * Reference:\
   [Preventing Sybil Attack in Blockchain using Distributed Behavior Monitoring of Miners](https://ieeexplore.ieee.org/document/8944507)
@@ -57,8 +75,7 @@
 
 * Severity: Medium
 * Description:\
-  A Denial of Service (DoS) attack is a type of attack in which an attacker aims to disrupt the normal functioning of a network by overwhelming it with a large number of requests or traffic. In a blockchain network, a DoS attack can take various forms, such as:\
-
+  A Denial of Service (DoS) attack is a type of attack in which an attacker aims to disrupt the normal functioning of a network by overwhelming it with a large number of requests or traffic. In a blockchain network, a DoS attack can take various forms, such as:\\
 
 1. Flooding the network with a high number of invalid transactions, making it difficult for legitimate transactions to be processed.
 2. Overloading the network with a high number of requests to the nodes, making them unable to keep up with the traffic, and causing them to crash.
@@ -100,3 +117,58 @@
   Timejacking exploits a theoretical vulnerability in Bitcoin timestamp handling. During a timejacking attack, a hacker alters the network time counter of the node and forces the node to accept an alternative blockchain. This can be achieved when a malicious user adds multiple fake peers to the network with inaccurate timestamps.
 * Recommendation:\
   A timejacking attack can be prevented by restricting acceptance time ranges or using the node’s system time.
+
+## RPC
+
+### Information Leakage
+
+* Severity: Low
+* Description:\
+  An attacker can exploit vulnerabilities in the RPC interface to gain access to sensitive information, such as private keys or transaction data. The [Eavesdropping Attack](network-layer.md#eavesdropping-attack) apply to this category as well.
+* Recommendation:\
+  Encrypt communications using encryption protocols, such as TLS.
+
+### Denial of Service Attack
+
+* Severity: Medium
+* Description:\
+  An attacker can flood the RPC interface with a large number of requests, overwhelming the system and causing it to become unavailable to legitimate users.
+* Recommendation:
+
+1. Prevent malformed parameters from crashing the software.
+2. Limit memory queue size.
+
+### Cross-Domain Phishing Attack
+
+* Severity: Low
+* Description:\
+  The hacker tricks the victim into opening a malicious webpage, connects to the cryptocurrency wallet RPC port through a cross-domain request, and then steals crypto assets.
+* Recommendation:\
+  Prohibit nodes from enabling cross-domain access.
+
+### Man-in-the-middle Attack
+
+* Severity: Low
+* Description:\
+  An attacker can intercept and modify requests sent to the RPC interface, potentially altering the intended behavior of the blockchain.
+* Recommendations:
+
+1. Use Secure Communication Protocols: It is important to use secure communication protocols such as HTTPS, SSH or SSL/TLS to encrypt the communication between the client and the RPC interface, making it much more difficult for an attacker to intercept and modify requests.
+2. Implement Authentication: Implementing authentication mechanisms such as password or token-based authentication, would ensure that only authorized users can access the RPC interface and prevent unauthorized access.
+3. Use Firewalls and Network Segmentation: Firewalls can be used to restrict access to the RPC interface to only trusted sources, and network segmentation can be used to isolate the RPC interface from other parts of the network.
+4. Input validation: The inputs to the RPC interface should be properly sanitized and validated before processing, to prevent injection attacks.
+5. Regularly update software: Keep the software and system up to date with the latest security patches to prevent known vulnerabilities from being exploited.
+6. Monitor logs: Regularly monitor the logs of the RPC interface for suspicious activity, and have an incident response plan in place to quickly detect and respond to any security breaches.
+
+### Injection Attack
+
+* Severity: Low
+* Description:\
+  An attacker can use malformed inputs to inject malicious code into the RPC interface, which can be used to steal sensitive information or disrupt the operation of the blockchain.
+* Recommendations:
+
+1. Input validation: The inputs to the RPC interface should be properly sanitized and validated before processing. This can help to prevent injection attacks by ensuring that only valid inputs are accepted and executed.
+2. Use prepared statements: Use prepared statements or parameterized queries to separate the data from the code, this can prevent SQL injection.
+3. Use an ORM: Object-Relational Mapping (ORM) libraries can provide a layer of abstraction between the code and the database, preventing SQL injection.
+4. Use a Web Application Firewall (WAF): A Web Application Firewall (WAF) can be used to detect and block malicious inputs, including injection attacks.
+5. Limit permissions: Limit the permissions of the account that the RPC uses to access the database, to prevent an attacker from using the account to execute malicious code.

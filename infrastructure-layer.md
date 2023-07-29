@@ -2,12 +2,6 @@
 
 ## Table of Contents
 
-* [RPC](infrastructure-layer.md#rpc)
-  * [Information Leakage](infrastructure-layer.md#information-leakage)
-  * [Denial of Service Attack](infrastructure-layer.md#denial-of-service-attack)
-  * [Cross-Domain Phishing Attack](infrastructure-layer.md#cross-domain-phishing-attack)
-  * [Man-in-the-middle Attack](infrastructure-layer.md#man-in-the-middle-attack)
-  * [Injection Attack](infrastructure-layer.md#injection-attack)
 * [Mining Pools](infrastructure-layer.md#mining-pools)
   * [Selfish Mining](infrastructure-layer.md#selfish-mining)
   * [Bribery Attack](infrastructure-layer.md#bribery-attack)
@@ -16,61 +10,6 @@
   * [Block Discarding Attack](infrastructure-layer.md#block-discarding-attack)
   * [Fork After Withholding Attack](infrastructure-layer.md#fork-after-withholding-attack)
   * [Uncle-Block Attack](infrastructure-layer.md#uncle-block-attack)
-
-## RPC
-
-### Information Leakage
-
-* Severity: Low
-* Description:\
-  An attacker can exploit vulnerabilities in the RPC interface to gain access to sensitive information, such as private keys or transaction data. The [Eavesdropping Attack](infrastructure-layer.md#eavesdropping-attack) apply to this category as well.
-* Recommendation:\
-  Encrypt communications using encryption protocols, such as TLS.
-
-### Denial of Service Attack
-
-* Severity: Medium
-* Description:\
-  An attacker can flood the RPC interface with a large number of requests, overwhelming the system and causing it to become unavailable to legitimate users.
-* Recommendation:
-
-1. Prevent malformed parameters from crashing the software.
-2. Limit memory queue size.
-
-### Cross-Domain Phishing Attack
-
-* Severity: Low
-* Description:\
-  The hacker tricks the victim into opening a malicious webpage, connects to the cryptocurrency wallet RPC port through a cross-domain request, and then steals crypto assets.
-* Recommendation:\
-  Prohibit nodes from enabling cross-domain access.
-
-### Man-in-the-middle Attack
-
-* Severity: Low
-* Description:\
-  An attacker can intercept and modify requests sent to the RPC interface, potentially altering the intended behavior of the blockchain.
-* Recommendations:
-
-1. Use Secure Communication Protocols: It is important to use secure communication protocols such as HTTPS, SSH or SSL/TLS to encrypt the communication between the client and the RPC interface, making it much more difficult for an attacker to intercept and modify requests.
-2. Implement Authentication: Implementing authentication mechanisms such as password or token-based authentication, would ensure that only authorized users can access the RPC interface and prevent unauthorized access.
-3. Use Firewalls and Network Segmentation: Firewalls can be used to restrict access to the RPC interface to only trusted sources, and network segmentation can be used to isolate the RPC interface from other parts of the network.
-4. Input validation: The inputs to the RPC interface should be properly sanitized and validated before processing, to prevent injection attacks.
-5. Regularly update software: Keep the software and system up to date with the latest security patches to prevent known vulnerabilities from being exploited.
-6. Monitor logs: Regularly monitor the logs of the RPC interface for suspicious activity, and have an incident response plan in place to quickly detect and respond to any security breaches.
-
-### Injection Attack
-
-* Severity: Low
-* Description:\
-  An attacker can use malformed inputs to inject malicious code into the RPC interface, which can be used to steal sensitive information or disrupt the operation of the blockchain.
-* Recommendations:
-
-1. Input validation: The inputs to the RPC interface should be properly sanitized and validated before processing. This can help to prevent injection attacks by ensuring that only valid inputs are accepted and executed.
-2. Use prepared statements: Use prepared statements or parameterized queries to separate the data from the code, this can prevent SQL injection.
-3. Use an ORM: Object-Relational Mapping (ORM) libraries can provide a layer of abstraction between the code and the database, preventing SQL injection.
-4. Use a Web Application Firewall (WAF): A Web Application Firewall (WAF) can be used to detect and block malicious inputs, including injection attacks.
-5. Limit permissions: Limit the permissions of the account that the RPC uses to access the database, to prevent an attacker from using the account to execute malicious code.
 
 ## Mining Pools
 
